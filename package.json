@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --watch dev -e js dev/api.js"
+    "node_1": "nodemon --watch dev -e js dev/api.js 3001",
+    "node_2": "nodemon --watch dev -e js dev/api.js 3002",
+    "node_3": "nodemon --watch dev -e js dev/api.js 3003",
+    "node_4": "nodemon --watch dev -e js dev/api.js 3004",
+    "node_5": "nodemon --watch dev -e js dev/api.js 3005"
   },
   "keywords": [
     "blockchain",
@@ -19,6 +23,7 @@
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.4",
+    "request-promise": "^4.2.5",
     "sha256": "^0.2.0",
     "uuid": "^8.1.0"
   }
