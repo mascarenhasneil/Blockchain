@@ -1,10 +1,16 @@
 const sha256= require('sha256')
+const currentNodeUrl = process.argv[3];
+const {v4: uuidv4} =require('uuid');
+
 
 
 
 function Blockchain() {
 	this.chain = [];
-	this.pendingTransactions = [];
+    this.pendingTransactions = [];
+    
+	this.currentNodeUrl = currentNodeUrl;
+	this.networkNodes = [];
 
 	this.createNewBlock(0, '0', '0');  // Genecis Block can be anyting I have kept it '0' for all values.
 };
