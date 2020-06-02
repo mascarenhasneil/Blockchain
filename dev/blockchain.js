@@ -1,4 +1,4 @@
-const sha256= require('sha256')
+const sha256 = require('sha256')
 const currentNodeUrl = process.argv[3];
 const {v4: uuidv4} =require('uuid');
 
@@ -43,6 +43,8 @@ Blockchain.prototype.createNewTransaction = function(amount, sender, recipient) 
 		amount: amount,
 		sender: sender,
 		recipient: recipient,
+		transactionId: uuid().split('-').join('')
+
 	};
 
 	return newTransaction;

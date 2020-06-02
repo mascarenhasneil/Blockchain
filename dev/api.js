@@ -1,6 +1,5 @@
 const Blockchain = require('./blockchain');
 const port = process.argv[2];
-
 const express=require('express')
 const app=express();
 const bodyParser=require('body-parser');
@@ -8,7 +7,6 @@ const {v4: uuidv4} =require('uuid');
 const rp = require("request-promise");
 
 const nodeAddress= uuidv4().split('-').join('');
-
 const bitcoin = new Blockchain();
 
 app.use(bodyParser.json());
@@ -46,7 +44,7 @@ app.get('/mine',function(req,res){
 	const requestPromises = [];
 	bitcoin.networkNodes.forEach(networkNodeUrl => {
 		const requestOptions = {
-			uri: networkNodeUrl + '/receive-new-block',
+			uri: networkNodeUrl + '/mine-broadcast',
 			method: 'POST',
 			body: { newBlock: newBlock },
 			json: true
@@ -139,6 +137,50 @@ app.post('/register-nodes-bulk', function(req, res) {
 });
 
 
+app.post('/transaction/broadcast', function(req, res) {
+	const newTransaction = bitcoin.createNewTransaction(req.body.amount, req.body.sender, req.body.recipient);
+	bitcoin.addTransactionToPendingTransactions(newTransaction);
+
+	const requestPromises = [];
+	bitcoin.networkNodes.forEach(networkNodeUrl => {
+		const requestOptions = {
+			uri: networkNodeUrl + '/transaction',
+			method: 'POST',
+			body: newTransaction,
+			json: true
+		};
+
+		requestPromises.push(rp(requestOptions));
+	});
+
+	Promise.all(requestPromises)
+	.then(data => {
+		res.json({ note: 'Transaction created and broadcast successfully.' });
+	});
+});
+
+
+// receive new broadcasted mined block
+app.post('/mine-broadcast', function(req, res) {
+	const newBlock = req.body.newBlock;
+	const lastBlock = bitcoin.getLastBlock();
+	const correctHash = lastBlock.hash === newBlock.previousBlockHash; 
+	const correctIndex = lastBlock['index'] + 1 === newBlock['index'];
+
+	if (correctHash && correctIndex) {
+		bitcoin.chain.push(newBlock);
+		bitcoin.pendingTransactions = [];
+		res.json({
+			note: 'New block received and accepted.',
+			newBlock: newBlock
+		});
+	} else {
+		res.json({
+			note: 'New block rejected.',
+			newBlock: newBlock
+		});
+	}
+});
 
 
 
