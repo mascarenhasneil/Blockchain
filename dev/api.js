@@ -1,10 +1,10 @@
 const Blockchain = require('./blockchain');
 const port = process.argv[2];
-const express=require('express')
+const express=require('express');
 const app=express();
 const bodyParser=require('body-parser');
 const {v4: uuidv4} =require('uuid');
-const rp = require("request-promise");
+const rp = require('request-promise');
 
 const nodeAddress= uuidv4().split('-').join('');
 const bitcoin = new Blockchain();
@@ -164,10 +164,10 @@ app.post('/transaction/broadcast', function(req, res) {
 app.post('/mine-broadcast', function(req, res) {
 	const newBlock = req.body.newBlock;
 	const lastBlock = bitcoin.getLastBlock();
-	const correctHash = lastBlock.hash === newBlock.previousBlockHash; 
-	const correctIndex = lastBlock['index'] + 1 === newBlock['index'];
+	//const correctHash = lastBlock.hash === newBlock.previousBlockHash; 
+	//const correctIndex = lastBlock['index'] + 1 === newBlock['index'];
 
-	if (correctHash && correctIndex) {
+	if ((lastBlock.hash === newBlock.previousBlockHash) && (lastBlock['index'] + 1 === newBlock['index'])) {
 		bitcoin.chain.push(newBlock);
 		bitcoin.pendingTransactions = [];
 		res.json({

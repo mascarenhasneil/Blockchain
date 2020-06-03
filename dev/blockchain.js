@@ -1,21 +1,23 @@
-const sha256 = require('sha256')
-const currentNodeUrl = process.argv[3];
-const {v4: uuidv4} =require('uuid');
+const sha256 = require('sha256')                 // 	importing SHA256 module
+// const currentNodeUrl = process.argv[3];          //	reading the current node url as agrument. this is sent when we run the node.
+const {v4: uuidv4} =require('uuid');             //     importing UUID module - version 4
 
 
 
 
+// The Blockchin constructor 
 function Blockchain() {
 	this.chain = [];
-    this.pendingTransactions = [];
+    	this.pendingTransactions = [];
     
-	this.currentNodeUrl = currentNodeUrl;
+	this.currentNodeUrl = process.argv[3];          //	reading the current node url as agrument. this is sent when we run the node.
 	this.networkNodes = [];
 
-	this.createNewBlock(0, '0', '0');  // Genecis Block can be anyting I have kept it '0' for all values.
+	this.createNewBlock(0, '0', '0');  				// Genecis Block can be anyting I have kept it '0' for all values.
 };
 
-
+// This function is primary. It creates the block. adds other crucial details like time stamp and index.
+// this block takes in the pending transaction and pushes to the corrent blockchain. 
 Blockchain.prototype.createNewBlock = function(nonce, previousBlockHash, hash) {
 	const newBlock = {
 		index: this.chain.length + 1,
@@ -32,38 +34,41 @@ Blockchain.prototype.createNewBlock = function(nonce, previousBlockHash, hash) {
 	return newBlock;
 };
 
-
+// This function is very simple. get the last block in the chain.
 Blockchain.prototype.getLastBlock = function() {
 	return this.chain[this.chain.length - 1];
 };
 
-
+// This functuon is the Data you want to store. Here i am using Transaction. 
+// Say you want to maintain medical records or sales records. You need to modify this finction here accordilgly.
+// In this case it creates a transaction and returns back 
 Blockchain.prototype.createNewTransaction = function(amount, sender, recipient) {
 	const newTransaction = {
 		amount: amount,
 		sender: sender,
 		recipient: recipient,
-		transactionId: uuid().split('-').join('')
+		transactionId: uuidv4().split('-').join('')
 
 	};
 
 	return newTransaction;
 };
 
-
+// This function adds the transaction to the pending list. thats it. simple.
 Blockchain.prototype.addTransactionToPendingTransactions = function(transactionObj) {
 	this.pendingTransactions.push(transactionObj);
 	return this.getLastBlock()['index'] + 1;
 };
 
-
+// this is the function resposbble for hashing the prevous block hash with current block data and nonce.
 Blockchain.prototype.hashBlock = function(previousBlockHash, currentBlockData, nonce) {
 	const dataAsString = previousBlockHash + nonce.toString() + JSON.stringify(currentBlockData);
 	const hash = sha256(dataAsString);
 	return hash;
 };
 
-
+// Very Important fearure.. create the nonce value i.e hash starting with 0000XXXXX... 
+// the pre-block hash and current block data will be hashed with hasblock function. once the noice is foudnd, sent back the nonce.
 Blockchain.prototype.proofOfWork = function(previousBlockHash, currentBlockData) {
 	let nonce = 0;
 	let hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
@@ -76,7 +81,7 @@ Blockchain.prototype.proofOfWork = function(previousBlockHash, currentBlockData)
 	return nonce;
 };
 
-
+// Check the sent block chain, if its vaild? and send bool result back.
 Blockchain.prototype.chainIsValid = function(blockchain) {
 	let validChain = true;
 
@@ -99,7 +104,7 @@ Blockchain.prototype.chainIsValid = function(blockchain) {
 	return validChain;
 };
 
-
+// Search the sent block hash, check if exists and sending its details back. 
 Blockchain.prototype.getBlock = function(blockHash) {
 	let correctBlock = null;
 	this.chain.forEach(block => {
@@ -108,7 +113,7 @@ Blockchain.prototype.getBlock = function(blockHash) {
 	return correctBlock;
 };
 
-
+// Search the sent Transaction ID, check if  exists and sending its details back. Also block details 
 Blockchain.prototype.getTransaction = function(transactionId) {
 	let correctTransaction = null;
 	let correctBlock = null;
@@ -128,7 +133,7 @@ Blockchain.prototype.getTransaction = function(transactionId) {
 	};
 };
 
-
+// Search the sent adddress ID, check if exists and sending its details back. check for both sender and receipent 
 Blockchain.prototype.getAddressData = function(address) {
 	const addressTransactions = [];
 	this.chain.forEach(block => {
@@ -156,6 +161,7 @@ Blockchain.prototype.getAddressData = function(address) {
 
 
 
+module.exports = Blockchain;      //--- Exporting this module so that we can use it in app.js 
 
 
 
@@ -170,22 +176,3 @@ Blockchain.prototype.getAddressData = function(address) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = Blockchain;
