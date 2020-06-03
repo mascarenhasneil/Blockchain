@@ -18,16 +18,13 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/mascarenhasneil/Blockchain">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
-  <h3 align="center">Blcokchain</h3>
+  <h3 align="center">Blockchain</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    This project is primarily made to learn Blockchain and Cryptocurrency Technology. 
     <br />
-    <a href="https://github.com/mascarenhasneil/Blockchain"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/mascarenhasneil/Blockchain/blob/master/Readme.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/mascarenhasneil/Blockchain">View Demo</a>
@@ -64,8 +61,6 @@
 In this project you will see all of the following concepts and the blockchain will have all of the following features below:
 
 ### Blockchain Essentials
-[![Product Name Screen Shot][product-screenshot]](https://101blockchains.com/wp-content/uploads/2018/07/How_Does_a_Blockchain_work-702x336.jpg "Blockchain Essentials courtesy:101blockchains.com")
-
 
 * A Proof-of-Work Algorithm to secure the network.
 * Hashing algorithms to secure the data within the blockchain we are using SHA256 algotithm for hashing.
@@ -144,6 +139,7 @@ Follow this by replacing the number of each node till all nodes are running.
 
 
 
+
 <!-- ROADMAP -->
 ## Roadmap
 
@@ -181,11 +177,11 @@ Project Link: [https://github.com/mascarenhasneil/Blockchain](https://github.com
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [BC - also known as Blockchain Community](https://blockchain.community/)
-* [Book: Blockchain: Blueprint for a New Economy- Book by Melanie Swan](https://g.co/kgs/6bsWDA) [You can buy book here - no strings attached.](http://shop.oreilly.com/product/0636920037040.do) 
-* [Book: Blockchain Basics: A Non-Technical Introduction in 25 Steps- Book by Daniel Drescher](https://g.co/kgs/auGnMY)
-* [Eric Traub - codingjavascript.com](https://codingjavascript.com/)
-* [Hasib Anwar - 101blockchains.com](https://101blockchains.com/ultimate-blockchain-technology-guide/)
+* BC - also known as Blockchain Community [blockchain.community](https://blockchain.community/)
+* [Book:](https://g.co/kgs/6bsWDA) Blockchain: Blueprint for a New Economy- Book by Melanie Swan. You can buy book here - [no strings attached.](http://shop.oreilly.com/product/0636920037040.do) 
+* [Book:](https://g.co/kgs/auGnMY) Blockchain Basics: A Non-Technical Introduction in 25 Steps- Book by Daniel Drescher
+* Eric Traub - [codingjavascript.com](https://codingjavascript.com/)
+* Hasib Anwar - [101blockchains.com](https://101blockchains.com/ultimate-blockchain-technology-guide/)
 
 
 
@@ -204,6 +200,6 @@ https://github.com/mascarenhasneil/Blockchain
 [issues-shield]: https://img.shields.io/github/issues/mascarenhasneil/Blockchain.svg?style=flat-square
 [issues-url]: https://github.com/mascarenhasneil/Blockchain/issues
 [license-shield]: https://img.shields.io/github/license/mascarenhasneil/Blockchain.svg?style=flat-square
-[license-url]: https://github.com/mascarenhasneil/Blockchain/blob/master/LICENSE.txt
+[license-url]: https://github.com/mascarenhasneil/Blockchain/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/mascarenhasneil
