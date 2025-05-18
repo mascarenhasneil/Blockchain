@@ -20,9 +20,9 @@
   "author": "Neil Mascarenhas",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.20",
+    "body-parser": "^1.20.3",
+    "express": "^4.21.0",
+    "nodemon": "^3.1.7",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "sha256": "^0.2.0",
