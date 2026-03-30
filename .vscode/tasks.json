@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "npm: install",
+      "type": "shell",
+      "command": "npm",
+      "args": ["install"],
+      "group": "build"
+    },
+    {
+      "label": "npm: test",
+      "type": "shell",
+      "command": "npm",
+      "args": ["test"],
+      "group": "test"
+    },
+    {
+      "label": "npm: test:coverage",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "test:coverage"],
+      "group": "test"
+    },
+    {
+      "label": "npm: node_1",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "node_1"],
+      "isBackground": true
+    }
+  ]
+}

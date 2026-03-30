@@ -1,0 +1,103 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "API Node 1 (3001)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/dev/api.js",
+      "args": ["3001", "http://localhost:3001"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development",
+        "REQUIRE_API_KEY": "false"
+      }
+    },
+    {
+      "name": "API Node 2 (3002)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/dev/api.js",
+      "args": ["3002", "http://localhost:3002"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development",
+        "REQUIRE_API_KEY": "false"
+      }
+    },
+    {
+      "name": "API Node 3 (3003)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/dev/api.js",
+      "args": ["3003", "http://localhost:3003"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development",
+        "REQUIRE_API_KEY": "false"
+      }
+    },
+    {
+      "name": "API Node 4 (3004)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/dev/api.js",
+      "args": ["3004", "http://localhost:3004"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development",
+        "REQUIRE_API_KEY": "false"
+      }
+    },
+    {
+      "name": "API Node 5 (3005)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/dev/api.js",
+      "args": ["3005", "http://localhost:3005"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development",
+        "REQUIRE_API_KEY": "false"
+      }
+    },
+    {
+      "name": "Jest: Current File",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["jest", "${relativeFile}", "--runInBand"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Attach to Node (9229)",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "restart": true,
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch 3-node network",
+      "configurations": [
+        "API Node 1 (3001)",
+        "API Node 2 (3002)",
+        "API Node 3 (3003)"
+      ]
+    }
+  ]
+}
