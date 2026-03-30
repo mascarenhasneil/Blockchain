@@ -10,10 +10,11 @@ function Blockchain() {
 	this.chain = [];
     	this.pendingTransactions = [];
     
-	this.currentNodeUrl = process.argv[3];          //	reading the current node url as agrument. this is sent when we run the node.
+	this.currentNodeUrl = process.argv[3];          //	reading the current node url as argument. this is sent when we run the node.
 	this.networkNodes = [];
 
-	this.createNewBlock(0, '0', '0');  				// Genecis Block can be anyting I have kept it '0' for all values.
+	// Genesis Block: nonce must be 100 to pass chainIsValid() consensus check.
+	this.createNewBlock(100, '0', '0');
 };
 
 // This function is primary. It creates the block. adds other crucial details like time stamp and index.
@@ -90,6 +91,7 @@ Blockchain.prototype.chainIsValid = function(blockchain) {
 		const prevBlock = blockchain[i - 1];
 		const blockHash = this.hashBlock(prevBlock['hash'], { transactions: currentBlock['transactions'], index: currentBlock['index'] }, currentBlock['nonce']);
 		if (blockHash.substring(0, 4) !== '0000') validChain = false;
+		if (currentBlock['hash'] !== blockHash) validChain = false;
 		if (currentBlock['previousBlockHash'] !== prevBlock['hash']) validChain = false;
 	};
 
@@ -147,7 +149,7 @@ Blockchain.prototype.getAddressData = function(address) {
 	let balance = 0;
 	addressTransactions.forEach(transaction => {
 		if (transaction.recipient === address) balance += transaction.amount;
-		else if (transaction.sender === address) balance -= transaction.amount;
+		if (transaction.sender === address) balance -= transaction.amount;
 	});
 
 	return {
