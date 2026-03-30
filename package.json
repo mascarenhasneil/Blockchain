@@ -1,15 +1,16 @@
 {
   "name": "blockchain",
-  "version": "1.0.0",
-  "description": "This is my blockchain creation experiment. Learing blockchain technology.",
-  "main": "index.js",
+  "version": "1.1.0",
+  "description": "A hands-on blockchain implementation for learning Blockchain and Cryptocurrency technology.",
+  "main": "dev/api.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "node_1": "nodemon --watch dev -e js dev/api.js 3001  http://localhost:3001",
-    "node_2": "nodemon --watch dev -e js dev/api.js 3002  http://localhost:3002",
-    "node_3": "nodemon --watch dev -e js dev/api.js 3003  http://localhost:3003",
-    "node_4": "nodemon --watch dev -e js dev/api.js 3004  http://localhost:3004",
-    "node_5": "nodemon --watch dev -e js dev/api.js 3005  http://localhost:3005"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "node_1": "nodemon --watch dev -e js dev/api.js 3001 http://localhost:3001",
+    "node_2": "nodemon --watch dev -e js dev/api.js 3002 http://localhost:3002",
+    "node_3": "nodemon --watch dev -e js dev/api.js 3003 http://localhost:3003",
+    "node_4": "nodemon --watch dev -e js dev/api.js 3004 http://localhost:3004",
+    "node_5": "nodemon --watch dev -e js dev/api.js 3005 http://localhost:3005"
   },
   "keywords": [
     "blockchain",
@@ -20,12 +21,39 @@
   "author": "Neil Mascarenhas",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.20.3",
-    "express": "^4.21.2",
-    "nodemon": "^3.1.7",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "sha256": "^0.2.0",
-    "uuid": "^8.1.0"
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.1.1"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/dev/test.js"
+    ],
+    "collectCoverageFrom": [
+      "dev/blockchain.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  },
+  "overrides": {
+    "picomatch": "^2.3.2",
+    "minimatch": "^3.1.5",
+    "ajv": "^6.14.0",
+    "lodash": "^4.17.23"
   }
 }
